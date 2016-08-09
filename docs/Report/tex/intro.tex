@@ -1,0 +1,37 @@
+	Cormorant Analytics improved upon a previous Multi-View Stereo Sensor by implementing a new prototype system consisting of new camera hardware, triggering electronics, 3D printed mount and enclosures, and Matlab processing algorithms.  The sensor was successfully integrated on a 3D Robotics X8 Quadcopter UAS platform.  A camera layout was selected to optimize the field of view of the sensor for long timeseries data acquisition of breaking waves in the littoral zone.  Camera boresight and relative orientation between the cameras is calculated and reported using the CAD model.  The system was succesfully integrated onto a 3D Robotics X8 Octocopter for initial testing.
+	Cormorant Analytics also provided support for processing previously acquired imagery through Agisoft Photoscan, as well as generation of Orthophotos with previously developed algorithms.  All of the Delivery Milestones, outlined in \tabref{tab:milestone}, were completed on time.
+	\begin{table}[htbp]
+		\centering
+		\caption{All Milestones were completed on time.}
+		\begin{tabular}{rrr}
+			\toprule
+			\textbf{Delivery Order Milestones} & \multicolumn{1}{c}{\textbf{Scheduled Completion}} & \textbf{Actual Completion} \\
+			\midrule
+			Project Kick-Off Meeting & 15-Mar & 15-Mar \\
+			Quarterly Program Management Review & 15-Jun & 15-Jun \\
+			Quarterly Program Management Review  & 15-Sep & 15-Sep \\
+			Initial Prototype Delivery & 15-Oct & 15-Oct \\
+			Quarterly Program Management Review & 15-Dec & 15-Dec \\
+			Close-out Brief & 15-Mar & 15-Mar \\
+			\bottomrule
+		\end{tabular}%
+		\label{tab:milestone}%
+	\end{table}%
+%	\cleardoublepage
+	\vspace{-1em}
+	\section*{Overview of Report}
+	\subsection*{Chapter 1: Camera Hardware}
+	The decision to use GoPro cameras, as well as the alternative camera options considered are discussed.  The lens and camera orientation are also discussed.
+	\vspace{-.2em}
+	\subsection*{Chapter 2: Electronics}
+	The electronic components, schematic, board, and methodology for triggering via teh GoPro audio port are discussed.  The cable pinout for each cable is also documented and discussed.
+	\vspace{-.2em}
+	\subsection*{Chapter 3: Mount Design and Fabrication}
+	Each component for the sensor design is briefly discussed, as well as the calculation of the relative orientations of the cameras from the CAD model.  
+	\vspace{-.2em}
+	\subsection*{Chapter 4: Image Synchronization}
+	The methodology and algorithms used to synchronize the video files to UTC time is discussed.  Documentation for how to extract images with interpolated GPS position info is also discussed.
+	\vspace{-.2em}
+	\subsection*{Chapter 5: Acquisition and Data Storage}
+	A workflow and checklist for data acquisition is presented.
+

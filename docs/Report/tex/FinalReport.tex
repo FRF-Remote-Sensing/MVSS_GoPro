@@ -1,0 +1,125 @@
+\documentclass{report}
+%change the margins
+\usepackage[margin=1in]{geometry} 
+% used for adding todo notes
+\usepackage{todonotes}
+% Used for adding Matlab Algorithms
+\usepackage{listings}
+\usepackage[framed,numbered]{matlab-prettifier}
+%Adds link to script
+\usepackage[hidelinks]{hyperref}
+%use fo rdefining new column
+\usepackage{array}
+%Add urls
+\usepackage{url}
+%use for numbered lists
+\usepackage{enumerate}
+% Add images
+\usepackage{graphicx}
+%lets you use the [H] command to force float placement
+\usepackage{float}
+%table toprule, midrule, bottomrule
+\usepackage{booktabs}
+%Use for folder tree
+\usepackage{xcolor}
+\usepackage{dirtree}
+%multirow in tables
+\usepackage{multirow}
+%degree symbol
+\usepackage{gensymb}
+%align equations
+\usepackage{amsmath}
+%checklist
+\usepackage[ampersand]{easylist}
+%pros/cons list
+\usepackage{booktabs}
+\usepackage{tabularx}
+
+% Change name from listing to algorithm
+\renewcommand{\lstlistingname}{Algorithm}% Listing -> Algorithm
+\renewcommand{\lstlistlistingname}{List of \lstlistingname s}% List of 
+%make references include the type of reference
+\newcommand*{\tabref}[1]{\tablename~\ref{#1}}
+\newcommand*{\figref}[1]{\figurename~\ref{#1}}
+\newcommand*{\algref}[1]{\lstlistingname~\ref{#1}}
+\newcommand*{\eqnref}[1]{Equation~\ref{#1}}
+\newcolumntype{C}[1]{>{\centering}m{#1}}
+\input{dirtreecmds}
+\begin{document}
+	\input{titlepage}
+	\cleardoublepage
+	\pagenumbering{roman}
+	\chapter*{Introduction}
+	\input{intro}
+	\cleardoublepage
+	\pagenumbering{arabic}
+	\tableofcontents
+	\thispagestyle{empty}
+	\cleardoublepage
+	\setcounter{page}{1}
+	
+
+	\chapter{Camera Hardware}
+	\input{hardware}
+	
+	\chapter{Electronics}
+	\input{cameraSync}
+	
+	\chapter{Mount Design and Fabrication}		
+	\input{MountDesign}
+	
+	\chapter{Image Synchronization}\label{ch:sync}
+	\input{ImageSynchro}
+	
+	\chapter{Acquisition and Data Storage}
+	\input{Acquisition}
+	
+%	\chapter{Pointcloud Generation}
+%	\section{Summarize Problem}
+%	\section{Agisoft Photoscan}
+%	\section{Accuracy Assessment}
+%	
+%	\chapter{Water Orthophoto Generation}
+%	\section{Summarize Problem}
+%	\section{Coordinate System Transformation}
+%	\section{Camera Boresight}
+%	\section{Accuracy Assessment}
+%	\subsection{Boresight Accuracy Assessment}
+%	\subsection{Orthophoto Accuracy Assessment}
+%	\subsection{Camera Resection Accuracy Assessment}
+	
+	\chapter*{Acknowledgement}
+	Cormorant Analytics, Inc. expresses appreciation to the FRF for funding support to this contracted effort and for the opportunity to contribute to the advancement of multi-view stereo generated point clouds for increased situational awareness.  Cormorant Analytics, Inc. also expresses appreciation to Integrity Applications Incorporated for their support and assistance throughout the effort.
+
+%	\chapter{GoPro Lens Install Walkthrough}
+	\appendix
+	\chapter{Files Delivered Electronically}
+		\input{filestruct}
+
+	\chapter{How to Order a PCB Designed using EAGLE}
+	PCBs are designed in various programs, and gerber files can be seen as a pdf type of file.  Gerber files are a number of generated files that are universally accepted by board manufacturers.  These files tell the board manufacturer exactly how to cut, drill, silkscreen, and route traces on the PCB. These gerber files have been generated and provided, so to order another PCB the following steps must be taken:
+	
+	\begin{enumerate}
+		\item Navigate to \url{https://www.apcircuits.com/ap/webclient}
+		\item Log in and fill out the shipping information
+		\item Fill out the board information as shown in 
+		\item Upload a zip file of the gerber files and select the layer correspondences as shown 
+	\end{enumerate}
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[scale = 0.7]{../figures/PCBorder1.PNG}
+		\caption{Fill out the information as shown to generate a two sided board with silkscreen on both sides.}
+		\label{fig:gerber}
+	\end{figure}
+	
+	\begin{figure}[H]
+		\centering
+		\includegraphics[scale = 0.7]{../figures/PCBorder2.PNG}
+		\caption{Select the correspondences based on the file extension so that the board is manufactured correctly.}
+		\label{fig:gerber}
+	\end{figure}
+	
+	\chapter{Algorithms}
+	\input{AppendixAlgorithms}
+\end{document}

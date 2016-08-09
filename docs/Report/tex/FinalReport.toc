@@ -1,0 +1,73 @@
+\contentsline {chapter}{\numberline {1}Camera Hardware}{1}{chapter.1}
+\contentsline {section}{\numberline {1.1}Camera Selection}{1}{section.1.1}
+\contentsline {subsection}{\numberline {1.1.1}GoPro Hero 4 Black}{1}{subsection.1.1.1}
+\contentsline {subsection}{\numberline {1.1.2}PtGrey}{1}{subsection.1.1.2}
+\contentsline {subsection}{\numberline {1.1.3}Raspberry Pi Camera Module}{2}{subsection.1.1.3}
+\contentsline {subsection}{\numberline {1.1.4}CHDK}{2}{subsection.1.1.4}
+\contentsline {section}{\numberline {1.2}Lens Selection}{2}{section.1.2}
+\contentsline {section}{\numberline {1.3}Possible Improvements}{3}{section.1.3}
+\contentsline {chapter}{\numberline {2}Electronics}{4}{chapter.2}
+\contentsline {section}{\numberline {2.1}Other Considered Methodology}{4}{section.2.1}
+\contentsline {section}{\numberline {2.2}Audio Encoding Technical Approach}{4}{section.2.2}
+\contentsline {section}{\numberline {2.3}Component Selection}{5}{section.2.3}
+\contentsline {subsection}{\numberline {2.3.1}Teensy 3.2}{5}{subsection.2.3.1}
+\contentsline {subsection}{\numberline {2.3.2}openLog}{5}{subsection.2.3.2}
+\contentsline {subsection}{\numberline {2.3.3}Adafruit Ultimate GPS}{5}{subsection.2.3.3}
+\contentsline {subsection}{\numberline {2.3.4}Voltage Regulator}{5}{subsection.2.3.4}
+\contentsline {subsection}{\numberline {2.3.5}9 Degree of Freedom IMU}{6}{subsection.2.3.5}
+\contentsline {subsection}{\numberline {2.3.6}JST Connectors}{6}{subsection.2.3.6}
+\contentsline {subsection}{\numberline {2.3.7}``SuperBright" LEDs}{6}{subsection.2.3.7}
+\contentsline {section}{\numberline {2.4}PCB Schematics and Board Designs}{6}{section.2.4}
+\contentsline {subsection}{\numberline {2.4.1}Main PCB}{7}{subsection.2.4.1}
+\contentsline {subsection}{\numberline {2.4.2}Panel PCB}{8}{subsection.2.4.2}
+\contentsline {section}{\numberline {2.5}Cable Pin Labels}{8}{section.2.5}
+\contentsline {section}{\numberline {2.6}GoPro Mini-USB-B Cable}{9}{section.2.6}
+\contentsline {section}{\numberline {2.7}Power}{10}{section.2.7}
+\contentsline {subsection}{\numberline {2.7.1}Alternate Power}{11}{subsection.2.7.1}
+\contentsline {section}{\numberline {2.8}Microcontroller Algorithm}{11}{section.2.8}
+\contentsline {section}{\numberline {2.9}Potential Electronics Improvements}{13}{section.2.9}
+\contentsline {subsection}{\numberline {2.9.1}Fix Blunders in PCB Board}{13}{subsection.2.9.1}
+\contentsline {subsection}{\numberline {2.9.2}Integrate onboard IMU}{13}{subsection.2.9.2}
+\contentsline {subsection}{\numberline {2.9.3}Improve GPS Quality}{13}{subsection.2.9.3}
+\contentsline {subsection}{\numberline {2.9.4}Implement Charge Port and USB Hub}{13}{subsection.2.9.4}
+\contentsline {chapter}{\numberline {3}Mount Design and Fabrication}{14}{chapter.3}
+\contentsline {section}{\numberline {3.1}3D CAD Design}{14}{section.3.1}
+\contentsline {subsection}{\numberline {3.1.1}Camera Enclosure Design}{14}{subsection.3.1.1}
+\contentsline {subsection}{\numberline {3.1.2}Camera Mount Design}{15}{subsection.3.1.2}
+\contentsline {subsection}{\numberline {3.1.3}Electronics Tray and Panel}{16}{subsection.3.1.3}
+\contentsline {subsection}{\numberline {3.1.4}X8 Quadcopter Legs Design}{16}{subsection.3.1.4}
+\contentsline {section}{\numberline {3.2}Full Design Specs}{17}{section.3.2}
+\contentsline {section}{\numberline {3.3}Camera Orientations}{18}{section.3.3}
+\contentsline {section}{\numberline {3.4}Possible Improvements}{19}{section.3.4}
+\contentsline {subsection}{\numberline {3.4.1}Reduce Weight}{19}{subsection.3.4.1}
+\contentsline {subsection}{\numberline {3.4.2}Implement Weatherproofing}{19}{subsection.3.4.2}
+\contentsline {subsection}{\numberline {3.4.3}Improve Panel}{19}{subsection.3.4.3}
+\contentsline {subsection}{\numberline {3.4.4}Improve Vibration Damping}{19}{subsection.3.4.4}
+\contentsline {chapter}{\numberline {4}Image Synchronization}{20}{chapter.4}
+\contentsline {section}{\numberline {4.1}Technical Approach}{20}{section.4.1}
+\contentsline {subsection}{\numberline {4.1.1}GoPro to UTC time}{20}{subsection.4.1.1}
+\contentsline {subsubsection}{GoPro Audio Signal Decoding}{20}{section*.9}
+\contentsline {subsubsection}{Algorithm Pseudocode}{22}{section*.10}
+\contentsline {subsection}{\numberline {4.1.2}Extract Frames}{23}{subsection.4.1.2}
+\contentsline {subsection}{\numberline {4.1.3}Convert Log file to CSV}{24}{subsection.4.1.3}
+\contentsline {subsection}{\numberline {4.1.4}Interpolate GPS data for each image}{24}{subsection.4.1.4}
+\contentsline {section}{\numberline {4.2}Temporal Accuracy}{24}{section.4.2}
+\contentsline {section}{\numberline {4.3}Possible Improvements}{26}{section.4.3}
+\contentsline {subsection}{\numberline {4.3.1}Embed x8 Flight log info}{26}{subsection.4.3.1}
+\contentsline {subsection}{\numberline {4.3.2}Incorporate onboard IMU}{26}{subsection.4.3.2}
+\contentsline {chapter}{\numberline {5}Acquisition and Data Storage}{27}{chapter.5}
+\contentsline {section}{\numberline {5.1}Mission Planning Tool}{27}{section.5.1}
+\contentsline {section}{\numberline {5.2}Flight Checklists}{28}{section.5.2}
+\contentsline {subsection}{\numberline {5.2.1}Pre Flight Checklist}{29}{subsection.5.2.1}
+\contentsline {subsection}{\numberline {5.2.2}Flight Checklist}{30}{subsection.5.2.2}
+\contentsline {section}{\numberline {5.3}Post Flight Checklist}{31}{section.5.3}
+\contentsline {section}{\numberline {5.4}Data Management}{32}{section.5.4}
+\contentsline {subsection}{\numberline {5.4.1}Raw Data Structure}{32}{subsection.5.4.1}
+\contentsline {subsection}{\numberline {5.4.2}Processed Data Structure}{33}{subsection.5.4.2}
+\contentsline {chapter}{\numberline {A}Files Delivered Electronically}{35}{appendix.A}
+\contentsline {chapter}{\numberline {B}How to Order a PCB Designed using EAGLE}{36}{appendix.B}
+\contentsline {chapter}{\numberline {C}Algorithms}{39}{appendix.C}
+\contentsline {section}{\numberline {C.1}function getValue}{39}{section.C.1}
+\contentsline {section}{\numberline {C.2}function calcGopro2GPStime}{41}{section.C.2}
+\contentsline {section}{\numberline {C.3}function extractFrames}{43}{section.C.3}
+\contentsline {section}{\numberline {C.4}function addPositionInfo}{45}{section.C.4}
