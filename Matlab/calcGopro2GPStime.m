@@ -15,11 +15,11 @@ function calcGopro2GPStime(mp4name,logfilename,dodebug)
 %% Set constants
 BAUDRATE=1660; %baud rate is set to 300, but actually is 1660
 NMEADT = 1; % time between signal pulses
-ALGORITHMVERSION = 'V0.1';
+ALGORITHMVERSION = 'V0.2';
 %% Read audio from mp4name
 [y,Fs]=audioread(mp4name);
-pps=y(:,2);
-nmea=y(:,1);
+pps=y(:,1);
+nmea=y(:,2);
 % make time variable
 t=0:1/Fs:(numel(pps)-1)*1/Fs;
 

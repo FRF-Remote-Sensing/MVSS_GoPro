@@ -19,7 +19,7 @@ function [tGP,val] = calcGoproNmeaCounts(t,nmea,NMEADT,BAUDRATE,DODEBUG)
 %% Set constants
 NMEAPEAKTHRESH = 0.04;
 FILTLENGTH = 20;
-FILTSIGMA = 5;
+FILTSIGMA = 2;
 NUMBITS = 20;
 GOODBITS = [9:-1:2 19:-1:12];
 dt = mean(diff(t(1:10)));
@@ -32,7 +32,9 @@ d_data = diff(nmea);
 %filter data signal to find first peak
 F = fspecial('gauss',[1 FILTLENGTH],FILTSIGMA);
 datafilt= conv(d_data,F,'same');
-
+datafiltcurv = [0 0 abs(diff(diff(datafilt)))'];
+F2 = fspecial('gauss',[1 FILTLENGTH],FILTSIGMA*2);
+datafilt2= conv(datafiltcurv,F2,'same');
 %% Detect Peaks
 [pkval,ind]=findpeaks(abs(datafilt),'minpeakheight',NMEAPEAKTHRESH);
 pkval(datafilt(ind)<0)=pkval(datafilt(ind)<0)*-1; %make negative peaks
@@ -53,35 +55,90 @@ tGP = t(firstinds);
 
 %% Extract values at each Index
 allVals = datafilt(sigInds);
+allVals2 = datafilt2(sigInds);
+allVals2(allVals<0)=allVals2(allVals<0)*-1;
 
-%% Convert values to binary
-% set peak as 1/3 max peak for each signal
-pkthresh = max(abs(allVals'))/3;
-pkthreshMat = repmat(pkthresh',[1,NUMBITS]);
+%% Having issues with the 5th bit not registering high enough
+allVals(:,5)=allVals(:,5)*2;
 
-allBinaryPeaks = double(abs(allVals)>pkthreshMat);
-negativeVals = allVals<0;
-allBinaryPeaks(negativeVals) = allBinaryPeaks(negativeVals)*-1;
+%% convert to binary signal
+binarysignal = calcBinaryFromPeaks(allVals, NUMBITS);
 
-binarysignal = ~logical(cumsum(allBinaryPeaks,2));
-
-% [round(allVals(1,:)*100)' allBinaryPeaks(1,:)' binarysignal(1,:)']
 %% convert binary to decimal
 BinaryBitsString = num2str(binarysignal(:,GOODBITS),'%.0f');
-val = nan(1,nSignals);
+rawval = nan(1,nSignals);
 for iRow=1:nSignals
     iBinSig = BinaryBitsString(iRow,:);
-    val(iRow) = bin2dec(iBinSig);
+    rawval(iRow) = bin2dec(iBinSig);
     if DODEBUG
-        fprintf('%10.3f : %s : %.0f\n',tGP(iRow),iBinSig,val(iRow));
+        txt = sprintf('%10.3f : %s : %.0f\n',tGP(iRow),iBinSig,rawval(iRow));
+        figure(11)
+        plotInds = sigInds(iRow,1)-100:sigInds(iRow,end)+100;
+        plot(plotInds,d_data(plotInds),'k')
+        hold on
+        plot(plotInds,datafilt(plotInds),'b');
+        plot(sigInds(iRow,:),allVals(iRow,:),'r*','markersize',10)
+        plot(plotInds,datafilt2(plotInds)*10,'c-');
+        for i=1:numel(GOODBITS)
+            text(sigInds(iRow,GOODBITS(i)),0.8,iBinSig(i))
+            text(sigInds(iRow,GOODBITS(i)),0.9,num2str(i))
+        end
+        title(txt)
+        hold off
+        xlim([min(plotInds(:)) max(plotInds(:))]);
+        ylim([-1 1])
+        drawnow
     end
 end
+%% filter val to remove outliers
+%1) remove big jumps
+%2) running mean filter
+%3) remove points greater than 15 away from gaussian filtered
+%4) linear fit
+%5) round
 
-%% DEBUG
+x = 1:numel(rawval);
+y = rawval;
+%1) 
+badInds = logical([0 diff(y)~=1]);
+x(badInds)=[];
+y(badInds)=[];
+%2) 
+FILTLEN = 21;
+h = ones(1,FILTLEN)./FILTLEN;
+ynorm = conv(ones(size(y)),h,'same');
+yfilt= conv(y,h,'same')./ynorm;
+%3) 
+badInds = abs(y-yfilt)>1;
+x(badInds)=[];
+y(badInds)=[];
+%4) 
+p = polyfit(x,y,1);
+y2 = polyval(p,1:numel(rawval));
+%5)
+val = round(y2);
+%output
+fprintf('FIXED');
+for iRow=1:nSignals
+    iBinSig = BinaryBitsString(iRow,:);
+    fprintf('%10.3f : %s : %.0f',tGP(iRow),iBinSig,rawval(iRow));
+    if val(iRow) ~= rawval(iRow)
+        fprintf(' : %.0f *index fixed via interpolation',val(iRow))
+    end
+    fprintf('\n');
+end
+if DODEBUG
+   figure
+   plot(1:numel(rawval),rawval,'r.')
+   hold on
+   plot(1:numel(rawval),val,'b.')
+end
+    %% DEBUG
 if DODEBUG
     figure
-    plot(datafilt)
+    plot(d_data,'k-')
     hold on
+    plot(datafilt)
     plot(ind,pkval,'m*')
     plot(ind(bigjumps),pkval(bigjumps),'go');
     title('extracted nmea peaks');
